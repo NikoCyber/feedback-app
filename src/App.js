@@ -12,21 +12,23 @@ function App() {
     <FeedbackProvider>
       <Router>
         <Header text="Feedback UI" />
-        <div className="container">
-          <Routes>
-            <Route
-              exact
-              path="/"
-              element={
-                <>
-                  <FeedbackForm />
-                  <FeedbackStats />
-                  <FeedbackList />
-                </>
-              }
-            ></Route>
-            <Route path="/about" element={<About />} />
-          </Routes>
+        <div>
+          <div className="container">
+            <Routes>
+              <Route
+                exact
+                path="/"
+                element={
+                  <>
+                    <FeedbackForm />
+                    <FeedbackStats />
+                    <FeedbackList />
+                  </>
+                }
+              ></Route>
+              <Route path="/about" element={<About />} />
+            </Routes>
+          </div>
           <AboutIconLink />
         </div>
       </Router>
