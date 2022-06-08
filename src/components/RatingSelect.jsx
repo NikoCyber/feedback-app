@@ -1,38 +1,36 @@
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import FeedbackContext from '../context/FeedbackContext'
 
 export default function RatingSelect({select}) {
+    const [selected, setSelected] = useState(10)
 
-    const [selected, setSelected] = useState(2)
+    const {feedbackEditState} = useContext(FeedbackContext)
+
+    useEffect(()=>{
+        setSelected(feedbackEditState.item.rating)
+    }, [feedbackEditState])
 
     const handleChange =(e)=>{
         setSelected(+e.currentTarget.value)
         select(+e.currentTarget.value)
     }
+    const arr = Array.from(Array(10), (_, i) => i + 1)
 
   return (
     <ul className='rating'>
-        <li>
-            <input
-                type='radio'
-                id='num1'
-                name='rating'
-                value='1'
-                onChange={handleChange}
-                checked={selected === 1}
-            />
-            <label htmlFor='num1'>1</label>
-        </li>
-          <li>
-              <input
-                  type='radio'
-                  id='num2'
-                  name='rating'
-                  value='2'
-                  onChange={handleChange}
-                  checked={selected === 2}
-              />
-              <label htmlFor='num1'>2</label>
-          </li>
+        {arr.map(i=>(
+                <li key={i}>
+                    <input
+                        type='radio'
+                        id={`num${i}`}
+                        name='rating'
+                        value={i}
+                        onChange={handleChange}
+                        checked={selected === i}
+                    />
+                    <label htmlFor={`num${i}`}>{i}</label>
+                </li>
+            ))}
     </ul>
   )
 }

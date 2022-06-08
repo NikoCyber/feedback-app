@@ -1,16 +1,18 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function Header({ text, bgColor, textColor}) {
 
     const headerStyles = {
         backgroundColor: bgColor,
-        color: textColor
+        color: textColor,
+        textDecoration: 'none'
     }
 
   return (
-      <header style={headerStyles}>
+    <header style={headerStyles}>
         <div className='container'>
-            <h2>{text}</h2>
+        <Link to="/" style={ headerStyles }><h2>{text}</h2></Link>
         </div>
     </header>
   )
@@ -18,5 +20,5 @@ export default function Header({ text, bgColor, textColor}) {
 
 Header.defaultProps = {
     bgColor: 'rgba(0,0,0,0.4)',
-    textColor: '#ff6a95'
+    textColor: '#ff6a95',
 }

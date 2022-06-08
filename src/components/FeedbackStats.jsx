@@ -1,6 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import FeedbackContext from '../context/FeedbackContext'
 
-export default function FeedbackStats({feedback}) {
+export default function FeedbackStats() {
+
+    const {feedback} = useContext(FeedbackContext)
+
     let avarage = feedback.reduce((accum, cur) => accum + cur.rating, 0) /feedback.length
 
     avarage = avarage.toFixed(1) //one decimal after .
